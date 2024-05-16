@@ -5,6 +5,7 @@ class OppeError(Exception):
     """Base class for other exceptions"""
 
     def __init__(self, msg='Unknown error occurred', data=None):
+        """Initialize the exception"""
         self.msg = msg
         self.data = data
 

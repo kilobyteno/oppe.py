@@ -1,4 +1,5 @@
 import json
+from http import HTTPStatus
 
 import requests
 
@@ -11,11 +12,13 @@ class Oppe:
     """
     Oppe class for communicating with the Oppe API.
 
-    Attributes:
+    Attributes
+    ----------
         api_token (str):
             The authentication api_token.
         project_id (str):
             The project_id uuid identifier.
+
     """
 
     def __init__(self, api_token, project_id):
@@ -75,9 +78,6 @@ class Oppe:
 
         # Send request to Oppe
         response = requests.post(Config.EVENT_URL, data=json.dumps(payload), headers=request_header(api_token=self.api_token))
-        if response.status_code != 201:
-            raise EventRequestError(
-                msg=f'Failed to send event to Oppe! Status code: {response.status_code}',
-                data=response.json()
-            )
+        if response.status_code != HTTPStatus.CREATED.value:
+            raise EventRequestError(msg=f'Failed to send event to Oppe! Status code: {response.status_code}', data=response.json())
         return True

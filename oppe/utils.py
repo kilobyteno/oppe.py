@@ -1,4 +1,5 @@
-""" Common utilities for the Oppe package """
+"""Common utilities for the Oppe package"""
+
 import re
 import uuid
 
@@ -20,11 +21,7 @@ def request_header(api_token: str) -> dict:
     if not api_token:
         raise ApiTokenMissingError(msg='API Token cannot be empty')
 
-    return {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer {api_token}'
-    }
+    return {'Accept': 'application/json', 'Content-Type': 'application/json', 'Authorization': f'Bearer {api_token}'}
 
 
 def format_tag_name(name: str) -> str:

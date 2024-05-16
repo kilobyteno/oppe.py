@@ -7,11 +7,13 @@ class Config:
     """
     Configuration class for Oppe app settings
 
-    Attributes:
+    Attributes
+    ----------
         BASE_URL (str):
             The base URL for the Oppe app
         EVENT_URL (str):
             The URL for accessing Oppe app events
+
     """
 
     BASE_URL = 'https://oppe.app/api/v0'

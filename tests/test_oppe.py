@@ -17,68 +17,68 @@ if os.path.exists(dotenv_path):
 
 
 def init_oppe():
-    """ Initialize Oppe """
+    """Initialize Oppe"""
     return Oppe(api_token=os.getenv('OPPE_TEST_API_TOKEN'), project_id=os.getenv('OPPE_TEST_PROJECT_ID'))
 
 
 def test_publish_event():
-    """ Test publish event """
+    """Test publish event"""
     oppe = init_oppe()
     response = oppe.event(channel_id=os.getenv('OPPE_TEST_CHANNEL_ID'), title=fake.domain_word(), description=fake.sentence())
     assert response is True
 
 
 def test_publish_event_with_emoji():
-    """ Test publish event with emoji """
+    """Test publish event with emoji"""
     oppe = init_oppe()
     response = oppe.event(channel_id=os.getenv('OPPE_TEST_CHANNEL_ID'), title=fake.domain_word(), description=fake.sentence(), emoji='👋')
     assert response is True
 
 
 def test_publish_event_with_data():
-    """ Test publish event with data """
+    """Test publish event with data"""
     oppe = init_oppe()
     response = oppe.event(channel_id=os.getenv('OPPE_TEST_CHANNEL_ID'), title=fake.domain_word(), description=fake.sentence(), data={'user_id': 1})
     assert response is True
 
 
 def test_publish_event_with_emoji_and_data():
-    """ Test publish event with emoji and data """
+    """Test publish event with emoji and data"""
     oppe = init_oppe()
     response = oppe.event(channel_id=os.getenv('OPPE_TEST_CHANNEL_ID'), title=fake.domain_word(), description=fake.sentence(), emoji='👋', data={'user_id': 1})
     assert response is True
 
 
 def test_publish_event_with_emoji_and_data_and_no_description():
-    """ Test publish event with emoji and data and no description """
+    """Test publish event with emoji and data and no description"""
     oppe = init_oppe()
     response = oppe.event(channel_id=os.getenv('OPPE_TEST_CHANNEL_ID'), title=fake.domain_word(), emoji='👋', data={'user_id': 1})
     assert response is True
 
 
 def test_publish_event_with_emoji_and_no_description():
-    """ Test publish event with emoji and no description """
+    """Test publish event with emoji and no description"""
     oppe = init_oppe()
     response = oppe.event(channel_id=os.getenv('OPPE_TEST_CHANNEL_ID'), title=fake.domain_word(), emoji='👋')
     assert response is True
 
 
 def test_publish_event_with_data_and_no_description():
-    """ Test publish event with data and no description """
+    """Test publish event with data and no description"""
     oppe = init_oppe()
     response = oppe.event(channel_id=os.getenv('OPPE_TEST_CHANNEL_ID'), title=fake.domain_word(), data={'user_id': 1})
     assert response is True
 
 
 def test_publish_event_with_no_description():
-    """ Test publish event with no description """
+    """Test publish event with no description"""
     oppe = init_oppe()
     response = oppe.event(channel_id=os.getenv('OPPE_TEST_CHANNEL_ID'), title=fake.domain_word())
     assert response is True
 
 
 def test_publish_event_with_wrong_channel_id():
-    """ Test publish event with wrong channel id """
+    """Test publish event with wrong channel id"""
     oppe = init_oppe()
     try:
         oppe.event(channel_id=fake.sha256(), title=fake.domain_word())
@@ -87,7 +87,7 @@ def test_publish_event_with_wrong_channel_id():
 
 
 def test_invalid_api_token(mocker):
-    """ Test invalid api token """
+    """Test invalid api token"""
     # Mock the requests.post method to return a non-201 response
     mocker.patch('requests.post', return_value=Mock(status_code=401, json=lambda: {'error': 'Unauthorized'}))
 
