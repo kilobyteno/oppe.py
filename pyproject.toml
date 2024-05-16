@@ -66,10 +66,12 @@ select = [
 ignore = [
     "D100", # Missing docstring in public module
     "D104",  # Missing docstring in public package
+    "D415", # First line should end with a period
     "D203", # 1 blank line required before class docstring
     "D212", # Multi-line docstring summary should start at the first line
     "D400", # First line should end with a period
     "TD003", # Missing issue link on the line following
+    "PLR0913", # Too many arguments
 ]
 
 
